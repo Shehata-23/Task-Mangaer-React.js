@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+function handleLocalStorage(tasks) {
+  let stingTasks = JSON.stringify(tasks);
+  localStorage.setItem("tasks", stingTasks);
+}
 let taskSlice = createSlice({
   name: "tasks",
   initialState: {
@@ -10,30 +14,27 @@ let taskSlice = createSlice({
     addTask: (state, action) => {
       state.count += 1;
       state.tasks.push(action.payload);
-      let stingTasks = JSON.stringify(state.tasks);
-      localStorage.setItem("tasks", stingTasks);
+      handleLocalStorage(state.tasks);
     },
     removeTask: (state, action) => {
       state.count -= 1;
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
-      let stingTasks = JSON.stringify(state.tasks);
-      localStorage.setItem("tasks", stingTasks);
+      handleLocalStorage(state.tasks);
     },
     updateTask: (state, action) => {
       state.tasks = state.tasks.map((task) =>
         task.id === action.payload.id ? { ...task, ...action.payload } : task
       );
-      let stingTasks = JSON.stringify(state.tasks);
-      localStorage.setItem("tasks", stingTasks);
+      handleLocalStorage(state.tasks);
+
       console.log(state.tasks);
     },
     cashedTasks: (state) => {
       const storedTasks = localStorage.getItem("tasks");
       if (storedTasks.length > 0) {
-        
-          state.tasks = JSON.parse(storedTasks);
+        state.tasks = JSON.parse(storedTasks);
       } else {
-        state.tasks = []; 
+        state.tasks = [];
       }
     },
   },
