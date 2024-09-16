@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -55,7 +54,4 @@ A feature-rich frontend application built with React and Vite to manage tasks ef
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
->>>>>>> 6063a744a53e12ed46fcde6e5e6b11a9cf2724e3
