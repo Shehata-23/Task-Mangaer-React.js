@@ -4,12 +4,16 @@ function handleLocalStorage(tasks) {
   let stingTasks = JSON.stringify(tasks);
   localStorage.setItem("tasks", stingTasks);
 }
+
+
 let taskSlice = createSlice({
   name: "tasks",
   initialState: {
     count: 150,
     tasks: [],
+    filter: "",
   },
+  
   reducers: {
     addTask: (state, action) => {
       state.count += 1;
@@ -37,10 +41,13 @@ let taskSlice = createSlice({
         state.tasks = [];
       }
     },
+    updateFilter: (state, action) => {
+      state.filter = action.payload
+    }
   },
 });
 
-export const { addTask, removeTask, updateTask, cashedTasks } =
+export const { addTask, removeTask, updateTask, cashedTasks, updateFilter} =
   taskSlice.actions;
 
 export default taskSlice.reducer;
